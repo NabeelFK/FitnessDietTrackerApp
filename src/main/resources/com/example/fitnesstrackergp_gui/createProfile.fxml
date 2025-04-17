@@ -38,7 +38,7 @@
       <TextField fx:id="weightInput" layoutX="154.0" layoutY="175.0" />
       <TextField fx:id="ageInput" layoutX="154.0" layoutY="127.0" />
       <TextField fx:id="usernameInput" layoutX="154.0" layoutY="83.0" />
-      <Button layoutX="103.0" layoutY="332.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" text="Submit">
+      <Button fx:id="submitButton" layoutX="103.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleSubmitBtn" prefHeight="27.0" prefWidth="149.0" text="Submit">
          <font>
             <Font size="13.0" />
          </font>

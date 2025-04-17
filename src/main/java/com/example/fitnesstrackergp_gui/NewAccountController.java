@@ -1,5 +1,6 @@
 package com.example.fitnesstrackergp_gui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -20,4 +21,21 @@ public class NewAccountController implements Initializable {
     private TextField weightInput;
     @FXML
     private ChoiceBox<String> genderInput;
+    @FXML
+    private Button submitButton;
+
+    String Username;
+    int Age;
+    Float Weight;
+    Gender Gender;
+
+    public void handleSubmitBtn(ActionEvent actionEvent) {
+        try {
+            Age = Integer.parseInt(ageInput.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+        }
+    }
 }
