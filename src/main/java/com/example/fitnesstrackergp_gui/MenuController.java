@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class MenuController {
 
@@ -64,7 +65,14 @@ public class MenuController {
 
     @FXML
     public void handleExitBtn(ActionEvent actionEvent) {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Are you sure you wish to exit?");
+        alert.setHeaderText("Exit Confirmation");
+        alert.setContentText("Thank you for using our Fitness Diet Tracker!");
+        Optional <ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            Stage stage = (Stage) exitButton.getScene().getWindow();
+            stage.close();
+        }
     }
 }
