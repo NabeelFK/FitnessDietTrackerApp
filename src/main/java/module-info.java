@@ -1,0 +1,8 @@
+module com.example.fitnesstrackergp_gui {
+    requires javafx.controls;
+    requires javafx.fxml;
+
+
+    opens com.example.fitnesstrackergp_gui to javafx.fxml;
+    exports com.example.fitnesstrackergp_gui;
+}
