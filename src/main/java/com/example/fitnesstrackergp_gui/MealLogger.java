@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class MealLogger {
-    private static String fileName = "meals.csv";
+    private static String fileName = "src/main/resources/com/example/fitnesstrackergp_gui/meals.csv";
     private final Scanner scanner = new Scanner(System.in);
 
     /**
@@ -124,4 +124,30 @@ public class MealLogger {
             dietHistory.showAverage();
         }
     }
+
+    /**
+     * Returns the full meal history and average calories for a user (all-time),
+     * suitable for GUI display.
+     *
+     * @param username The username to fetch meal history for.
+     * @return A formatted string of meal records and calorie averages.
+     */
+    public String getMealHistory(String username) {
+        StringBuilder result = new StringBuilder();
+
+        for (Gender gender : Gender.values()) {
+            DietHistory dietHistory = new DietHistory();
+            dietHistory.loadCSV(fileName, username, gender);
+
+            if (dietHistory.getDayCount() > 0) {
+                result.append("Meal History for ").append(username).append(" (").append(gender).append("):\n\n");
+                result.append(dietHistory.getFormattedMeals());
+                result.append("\nAverage Calories/Day: ").append(String.format("%.2f", dietHistory.getAverage()));
+                return result.toString();
+            }
+        }
+
+        return "No meal history found for user: " + username;
+    }
+
 }

@@ -156,4 +156,17 @@ public class DietHistory extends History implements Comparable<DietHistory> {
         return Double.compare(this.getAverageDailyCalorieIntake(MEALS.size()),
                 other.getAverageDailyCalorieIntake(MEALS.size()));
     }
+
+    public String getFormattedMeals() {
+        StringBuilder sb = new StringBuilder();
+        for (Meal meal : MEALS) {
+            sb.append(meal).append("\n");
+        }
+        return sb.toString();
+    }
+
+    public int getDayCount() {
+        return this.dayCount;
+    }
+
 }

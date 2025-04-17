@@ -34,4 +34,6 @@ public abstract class Person {
      * @return The calculated BMR value as a double, representing the number of calories burned per day at rest.
      */
     public abstract double calculateBMR();
+
+
 }

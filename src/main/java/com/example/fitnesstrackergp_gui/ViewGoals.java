@@ -70,7 +70,7 @@ public class ViewGoals extends History {
      * @return An integer indicating the result of the operation.
      */
     public int showGoalHistory(String name, Gender gender) {
-        List<String> profile = FileHandler.readAllMatches("profiles.csv", name, gender.toChar());
+        List<String> profile = FileHandler.readAllMatches("src/main/resources/com/example/fitnesstrackergp_gui/profiles.csv", name, gender.toChar());
 
         if (profile.isEmpty()) {
             System.out.println("No profile found.");
@@ -90,4 +90,31 @@ public class ViewGoals extends History {
         }
         return 0;
     }
+
+    public String getGoalsSummary(String name) {
+        StringBuilder output = new StringBuilder();
+
+        for (Gender gender : Gender.values()) {
+            List<String> profile = FileHandler.readAllMatches("src/main/resources/com/example/fitnesstrackergp_gui/profiles.csv", name, gender.toChar());
+
+            if (!profile.isEmpty()) {
+                UserProfile user = UserProfile.fromCSV(profile.get(0));
+                loadCSV("src/main/resources/com/example/fitnesstrackergp_gui/goals.csv", name, gender);
+
+                output.append("Current Weight: ").append(user.getWeight()).append(" Kg\n\n");
+
+                if (GOALS.isEmpty()) {
+                    output.append("No fitness goals found.\n");
+                } else {
+                    for (FitnessGoal goal : GOALS) {
+                        output.append(goal).append("\n");
+                    }
+                }
+                return output.toString();  // Return early after first valid match
+            }
+        }
+
+        return "Profile not found.\n";
+    }
+
 }

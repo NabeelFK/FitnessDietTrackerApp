@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProfileManager {
-    private static String fileName = "profiles.csv";
+    private static String fileName = "src/main/resources/com/example/fitnesstrackergp_gui/profiles.csv";
     private final Scanner scanner = new Scanner(System.in);
 
     /**
@@ -96,4 +96,38 @@ public class ProfileManager {
             System.out.println(profile);
         }
     }
+
+    /**
+     * Retrieves a UserProfile object based on username.
+     * It searches the profiles.csv file for the first match of username (case-sensitive).
+     *
+     * @param username The username to look up.
+     * @return UserProfile object if found, null otherwise.
+     */
+    public UserProfile getProfile(String username) {
+        for (Gender gender : Gender.values()) {
+            List<String> matches = FileHandler.readAllMatches(fileName, username, gender.toChar());
+            if (!matches.isEmpty()) {
+                return UserProfile.fromCSV(matches.get(0)); // return first match
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Checks whether a profile with the given username exists.
+     *
+     * @param username The username to check.
+     * @return true if any gendered profile with this name exists; false otherwise.
+     */
+    public boolean profileExists(String username) {
+        for (Gender gender : Gender.values()) {
+            List<String> matches = FileHandler.readAllMatches(fileName, username, gender.toChar());
+            if (!matches.isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
