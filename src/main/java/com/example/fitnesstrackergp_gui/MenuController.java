@@ -34,4 +34,37 @@ public class MenuController {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    public void handleSetGoalsBtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("setGoals.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Set Goals");
+        stage.setScene(new Scene(fxmlLoader.load()));
+        stage.show();
+    }
+
+    @FXML
+    public void handleLogMealsBtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("logMeals.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Log Meals");
+        stage.setScene(new Scene(fxmlLoader.load()));
+        stage.show();
+    }
+
+    @FXML
+    public void handleViewHistoryBtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("viewHistory.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("View History");
+        stage.setScene(new Scene(fxmlLoader.load()));
+        stage.show();
+    }
+
+    @FXML
+    public void handleExitBtn(ActionEvent actionEvent) {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
 }
