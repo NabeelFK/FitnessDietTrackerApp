@@ -11,7 +11,7 @@ public class FitnessTrackerApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(FitnessTrackerApp.class.getResource("menu.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 375, 450);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
