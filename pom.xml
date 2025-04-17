@@ -67,7 +67,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.fitnesstrackergp_gui/com.example.fitnesstrackergp_gui.HelloApplication
+                                com.example.fitnesstrackergp_gui/com.example.fitnesstrackergp_gui.FitnessTrackerApp
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
