@@ -13,9 +13,9 @@
          </font>
       </Label>
       <Button fx:id="newAccountButton" layoutX="94.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleNewAccBtn" prefHeight="25.0" prefWidth="189.0" text="Create Account" />
-      <Button layoutX="94.0" layoutY="178.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" text="Set Goals" />
-      <Button layoutX="94.0" layoutY="233.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" text="Log Meals" />
-      <Button layoutX="93.0" layoutY="289.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" text="View History" />
-      <Button layoutX="160.0" layoutY="377.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Exit" />
+      <Button fx:id="setGoalsButton" layoutX="94.0" layoutY="178.0" mnemonicParsing="false" onAction="#handleSetGoalsBtn" prefHeight="25.0" prefWidth="189.0" text="Set Goals" />
+      <Button fx:id="logMealsButton" layoutX="94.0" layoutY="233.0" mnemonicParsing="false" onAction="#handleLogMealsBtn" prefHeight="25.0" prefWidth="189.0" text="Log Meals" />
+      <Button fx:id="viewHistoryButton" layoutX="93.0" layoutY="289.0" mnemonicParsing="false" prefHeight="25.0" onAction="#handleViewHistoryBtn" prefWidth="189.0" text="View History" />
+      <Button fx:id="exitButton" layoutX="160.0" layoutY="377.0" mnemonicParsing="false" onAction="#handleExitBtn" prefHeight="25.0" prefWidth="56.0" text="Exit" />
    </children>
 </AnchorPane>
