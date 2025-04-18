@@ -78,15 +78,18 @@ public class ViewHistoryController {
         }
     }
 
-    public void showProfileNotFoundAlert() {
+    private void showProfileNotFoundAlert() {
+        //create an alert
         Alert alert = new Alert(Alert.AlertType.WARNING);
+        //set the title and content
         alert.setTitle("Profile not found");
         alert.setHeaderText("That profile doesn't exist");
         alert.setContentText("Would you like to create a new account?");
+        //add buttons for the user to click
         ButtonType createButton = new ButtonType("Create New Account");
         ButtonType cancelButton = new ButtonType("Close", ButtonBar.ButtonData.CANCEL_CLOSE);
+        //adding them to the alert
         alert.getButtonTypes().setAll(createButton,cancelButton);
-
         Optional <ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get()==createButton) {
             try {
