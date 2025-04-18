@@ -30,7 +30,7 @@ public class ProfileManager {
      * @return `true` if the username is valid,
      *         `false` otherwise.
      */
-    public boolean isValidUsername (String username) {
+    public static boolean isValidUsername(String username) {
         return username.matches("[a-zA-Z]+");
     }
 
@@ -43,7 +43,7 @@ public class ProfileManager {
     public void createProfile() {
         String username;
         while (true) {
-            System.out.println("Enter Username (please only enter alphabetic letters) : ");
+            System.out.println("Enter Username (please only enter alphabetic characters) : ");
             username = scanner.nextLine();
             if (isValidUsername(username)) {
                 break; // Exit loop if username is valid
