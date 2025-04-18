@@ -2,12 +2,10 @@ package com.example.fitnesstrackergp_gui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import javax.imageio.IIOException;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -92,14 +90,16 @@ public class ViewHistoryController {
         Optional <ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get()==createButton) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("createProfile.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("createProfile.fxml"));
                 Stage stage = new Stage();
-                stage.setScene(new Scene(loader.load()));
+                stage.setScene(new Scene(fxmlLoader.load()));
                 stage.setTitle("Create New Account");
+                stage.show();
             }
             catch (IOException e) {
                 System.out.println("Something went wrong.");
             }
         }
+
     }
 }
