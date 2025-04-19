@@ -100,7 +100,7 @@ public class ViewHistoryController {
     public void updateMealHistory(String period) {
         String username = usernameField.getText().trim();
         if (!profileManager.profileExists(username)) {
-            showAlert("Profile not found. Please create an account.");
+            showProfileNotFoundAlert();
             return;
         }
 
