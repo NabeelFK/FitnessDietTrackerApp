@@ -37,6 +37,9 @@ public class LogMealsController {
     private TextField dinnerField;
 
     @FXML
+    private Button submitButton;
+
+    @FXML
     public void initialize() {
         //set gender buttons as a part of the same group , so you can only select one
         ToggleGroup genderButtonGroup = new ToggleGroup();
