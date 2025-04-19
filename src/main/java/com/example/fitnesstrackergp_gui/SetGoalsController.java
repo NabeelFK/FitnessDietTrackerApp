@@ -11,7 +11,11 @@ import java.io.*;
 import java.util.Optional;
 
 public class SetGoalsController implements Initializable {
-    private static final String fileName = "src/main/resources/com/example/fitnesstrackergp_gui/goals.csv";
+    private String fileName;
+
+    public SetGoalsController() {
+        this.fileName = ArgsManager.getInstance().getGoalsCSV();
+    }
 
     @FXML
     private TextField usernameInput;

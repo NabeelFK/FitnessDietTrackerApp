@@ -8,10 +8,15 @@ import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class NewAccountController implements Initializable {
-    private static final String fileName = "src/main/resources/com/example/fitnesstrackergp_gui/profiles.csv";
+    private String fileName;
+
+    public NewAccountController() {
+        this.fileName = ArgsManager.getInstance().getProfileCSV();
+    }
 
     @FXML
     private TextField usernameInput;

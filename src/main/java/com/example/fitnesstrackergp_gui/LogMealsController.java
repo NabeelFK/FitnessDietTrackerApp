@@ -13,6 +13,12 @@ import java.util.Optional;
 
 public class LogMealsController {
 
+    private final String fileName;
+
+    public LogMealsController() {
+        this.fileName = ArgsManager.getInstance().getMealsCSV();
+    }
+
     @FXML
     private TextField usernameField;
 
@@ -159,7 +165,7 @@ public class LogMealsController {
 
             try {
                 String mealFormat = "\n" + username + "," + gender + "," + todaysDate + "," + breakfast + "," + lunch + "," + dinner + "\n";
-                String fileName = "src/main/resources/com/example/fitnesstrackergp_gui/meals.csv";
+                String fileName = this.fileName;
                 FileWriter writer = new FileWriter(fileName, true);
                 writer.write(mealFormat);
                 writer.close();
