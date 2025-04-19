@@ -84,7 +84,7 @@ public class LogMealsController {
                         break;
                     }
                 }
-            if (usernameFound == false){
+            if (!usernameFound){
                 //if there is no matching username associated with the inputted name, age and weight, a warning error will pop up
                 showProfileNotFoundAlert();
                 return;
@@ -147,7 +147,7 @@ public class LogMealsController {
         if (!username.isBlank() && !age.isBlank() && !weight.isBlank() && (gender.contains("M") || gender.contains("F")) && (!breakfast.isBlank() || !lunch.isBlank() || !dinner.isBlank())) {
 
             try {
-                String mealFormat = username + "," + gender + "," + todaysDate + "," + breakfast + "," + lunch + "," + dinner;
+                String mealFormat = "\n" + username + "," + gender + "," + todaysDate + "," + breakfast + "," + lunch + "," + dinner + "\n";
                 String fileName = "src/main/resources/com/example/fitnesstrackergp_gui/meals.csv";
                 FileWriter writer = new FileWriter(fileName, true);
                 writer.write(mealFormat);
