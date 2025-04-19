@@ -84,7 +84,7 @@ public class LogMealsController {
                         break;
                     }
                 }
-            if (!usernameFound){
+            if (usernameFound == false){
                 //if there is no matching username associated with the inputted name, age and weight, a warning error will pop up
                 showProfileNotFoundAlert();
                 return;
@@ -135,19 +135,31 @@ public class LogMealsController {
         String dinner = dinnerField.getText().trim();
 
         //at least one meal must be inputted in order for it to save to the users file, if none is inputted an error will pop up
-        if (breakfast.isBlank() || lunch.isBlank() || dinner.isBlank()){
+        if (breakfast.isBlank() && lunch.isBlank() && dinner.isBlank()){
             Alert invalidAlertMeal = new Alert(Alert.AlertType.WARNING);
             invalidAlertMeal.setTitle("Error: No Meal Provided");
             invalidAlertMeal.setHeaderText("Please make sure to fill at least one meal field");
             invalidAlertMeal.setContentText("If you do not fill in any meals, no history can be added to your account.");
             invalidAlertMeal.showAndWait();
             return;
+        } else {
+            while (breakfast.isBlank() || lunch.isBlank() || dinner.isBlank()) {
+                if (breakfast.isBlank()){
+                    breakfast = "Not provided. (0)";
+                }
+                if (lunch.isBlank()){
+                    lunch = "Not provided. (0)";
+                }
+                if (dinner.isBlank()){
+                    dinner = "Not provided. (0)";
+                }
+            }
         }
         //if everything is inputted correctly then it will add the data to the file
-        if (!username.isBlank() && !age.isBlank() && !weight.isBlank() && (gender.contains("M") || gender.contains("F")) && (!breakfast.isBlank() || !lunch.isBlank() || !dinner.isBlank())) {
+        if (!username.isBlank() && !age.isBlank() && !weight.isBlank() && (gender.contains("M") || gender.contains("F"))) {
 
             try {
-                String mealFormat = "\n" + username + "," + gender + "," + todaysDate + "," + breakfast + "," + lunch + "," + dinner + "\n";
+                String mealFormat = username + "," + gender + "," + todaysDate + "," + breakfast + "," + lunch + "," + dinner + "\n";
                 String fileName = "src/main/resources/com/example/fitnesstrackergp_gui/meals.csv";
                 FileWriter writer = new FileWriter(fileName, true);
                 writer.write(mealFormat);
@@ -163,7 +175,7 @@ public class LogMealsController {
             }
 
             //if user types everything in correctly an information pop up will let the user know their new added data has saved successfully
-    Alert mealSave = new Alert(Alert.AlertType.INFORMATION);
+        Alert mealSave = new Alert(Alert.AlertType.INFORMATION);
         mealSave.setTitle("Success!");
         mealSave.setHeaderText("Meals have been saved and added to user history.");
         mealSave.showAndWait();
