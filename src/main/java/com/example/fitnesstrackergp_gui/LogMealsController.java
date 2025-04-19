@@ -1,10 +1,14 @@
 package com.example.fitnesstrackergp_gui;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.util.Optional;
 
 
 public class LogMealsController {
@@ -79,11 +83,7 @@ public class LogMealsController {
                 }
             if (usernameFound == false){
                 //if there is no matching username associated with the inputted name, age and weight, a warning error will pop up
-                Alert usernameNotFound = new Alert(Alert.AlertType.WARNING);
-                usernameNotFound.setTitle("Profile Not Found");
-                usernameNotFound.setHeaderText("Please enter an existing user or create a new profile.");
-                usernameNotFound.setContentText("Ensure you are inputting the correct username with the correct age and weight.");
-                usernameNotFound.showAndWait();
+                showProfileNotFoundAlert();
                 return;
             }
 
@@ -166,5 +166,31 @@ public class LogMealsController {
         mealSave.showAndWait();
 
 
+    }
+
+    private void showProfileNotFoundAlert() {
+        //create an alert
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        //set the title and content
+        alert.setTitle("Profile not found");
+        alert.setHeaderText("That profile doesn't exist");
+        alert.setContentText("Would you like to create a new account?");
+        //add buttons for the user to click
+        ButtonType createButton = new ButtonType("Create New Account");
+        ButtonType cancelButton = new ButtonType("Close", ButtonBar.ButtonData.CANCEL_CLOSE);
+        //adding them to the alert
+        alert.getButtonTypes().setAll(createButton, cancelButton);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == createButton) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("createProfile.fxml"));
+                Stage stage = new Stage();
+                stage.setScene(new Scene(fxmlLoader.load()));
+                stage.setTitle("Create New Account");
+                stage.show();
+            } catch (IOException e) {
+                System.out.println("Something went wrong.");
+            }
+        }
     }
 }
