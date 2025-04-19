@@ -4,16 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 public class ViewHistoryController {
@@ -22,16 +18,20 @@ public class ViewHistoryController {
     private TextField usernameField;
 
     @FXML
-    private Button profileHistoryBtn;
-
-    @FXML
-    private Button goalHistoryBtn;
-
-    @FXML
-    private Button mealHistoryBtn;
-
-    @FXML
     private TextArea outputArea;
+
+    @FXML
+    private ToggleGroup genderGroup;
+
+    @FXML
+    private RadioButton maleRadio;
+
+    @FXML
+    private RadioButton femaleRadio;
+
+    @FXML
+    private RadioButton otherRadio;
+
 
     private final ProfileManager profileManager = new ProfileManager();
     private final MealLogger mealLogger = new MealLogger();
@@ -40,45 +40,78 @@ public class ViewHistoryController {
     @FXML
     private void handleProfileHistory() {
         String username = usernameField.getText().trim();
-        if (!profileManager.profileExists(username)) {
-            showProfileNotFoundAlert();
+        Gender gender = getSelectedGender();
+
+        if (username.isEmpty() || gender == null) {
+            showAlert("Please enter a username and select a gender.");
+            clearForm();
             return;
         }
 
-        UserProfile profile = profileManager.getProfile(username);
-        if (profile != null) {
-            outputArea.setText(profile.toString());
-        } else {
-            outputArea.setText("Unable to load profile.");
+        List<String> matches = FileHandler.readAllMatches("src/main/resources/com/example/fitnesstrackergp_gui/profiles.csv", username, gender.toChar());
+        if (matches.isEmpty()) {
+            showProfileNotFoundAlert();
+            clearForm();
+            return;
         }
+
+        UserProfile profile = UserProfile.fromCSV(matches.get(0));
+        outputArea.setText(profile.toString());
+        clearForm();
     }
 
     @FXML
     private void handleGoalHistory() {
         String username = usernameField.getText().trim();
-        if (!profileManager.profileExists(username)) {
+        Gender gender = getSelectedGender();
+
+        if (username.isEmpty() || gender == null) {
+            showAlert("Please enter a username and select a gender.");
+            clearForm();
+            return;
+        }
+
+        List<String> matches = FileHandler.readAllMatches("src/main/resources/com/example/fitnesstrackergp_gui/profiles.csv", username, gender.toChar());
+        if (matches.isEmpty()) {
             showProfileNotFoundAlert();
+            clearForm();
             return;
         }
 
         String goals = viewGoals.getGoalsSummary(username);
-        if (goals != null && !goals.isEmpty()) {
-            outputArea.setText(goals);
-        } else {
-            outputArea.setText("No goals found.");
-        }
+        outputArea.setText((goals != null && !goals.isEmpty()) ? goals : "No goals found.");
+        clearForm();
+    }
+
+    private Gender getSelectedGender() {
+        if (maleRadio.isSelected()) return Gender.MALE;
+        if (femaleRadio.isSelected()) return Gender.FEMALE;
+        if (otherRadio.isSelected()) return Gender.OTHER;
+        return null;
     }
 
     @FXML
     private void handleMealHistory() {
         String username = usernameField.getText().trim();
-        if (!profileManager.profileExists(username)) {
+        Gender gender = getSelectedGender();
+
+        if (username.isEmpty() || gender == null) {
+            showAlert("Please enter a username and select a gender.");
+            clearForm();
+            return;
+        }
+
+        List<String> matches = FileHandler.readAllMatches("src/main/resources/com/example/fitnesstrackergp_gui/profiles.csv", username, gender.toChar());
+        if (matches.isEmpty()) {
             showProfileNotFoundAlert();
+            clearForm();
             return;
         }
 
         openAdciSelectionWindow();
+        clearForm(); // clear after opening
     }
+
 
     private void openAdciSelectionWindow() {
         try {
@@ -110,6 +143,11 @@ public class ViewHistoryController {
         } else {
             outputArea.setText("No meals history found.");
         }
+    }
+
+    private void clearForm() {
+        usernameField.clear();
+        genderGroup.selectToggle(null);
     }
 
     private void showAlert(String message) {
