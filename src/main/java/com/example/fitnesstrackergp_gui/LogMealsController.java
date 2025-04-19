@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.*;
+import java.time.LocalDate;
 
 
 public class LogMealsController {
@@ -55,6 +56,9 @@ public class LogMealsController {
         String username = usernameField.getText().trim();
         String age = ageField.getText().trim();
         String weight = weightField.getText().trim();
+        String gender = "N/A";
+        LocalDate todaysDate = LocalDate.now();
+
         //if user does not input anything in the username field, username warning will occur
         if (username.isBlank()) {
             Alert invalidAlert = new Alert(Alert.AlertType.WARNING);
@@ -62,32 +66,105 @@ public class LogMealsController {
             invalidAlert.setHeaderText("Please make sure to fill in Username field.");
             invalidAlert.setContentText("If you have not previously created an account, you will be unable to save history.");
             invalidAlert.showAndWait();
+            return;
 
         }
-        InputStream toRead = getClass().getResourceAsStream("/com/example/fitnesstrackergp_gui.csv");
-        try (BufferedReader lineReader = new BufferedReader(new InputStreamReader(toRead))){
-            String lines;
-            boolean usernameFound = false;
-            while ((lines = lineReader.readLine()) != null) {
-                if (lines.contains(username)){
-                    usernameFound = true;
-                    break;
+        InputStream toRead = getClass().getResourceAsStream("/com/example/fitnesstrackergp_gui/profiles.csv");
+        try {
+            assert toRead != null;
+            try (BufferedReader lineReader = new BufferedReader(new InputStreamReader(toRead))){
+                String lines;
+                boolean usernameFound = false;
+                while ((lines = lineReader.readLine()) != null) {
+                    if (lines.contains(username)){
+                        usernameFound = true;
+                        break;
+                    }
                 }
+            if (usernameFound == false){
+                //if there is no matching username associated with the inputted name, age and weight, a warning error will pop up
+                Alert usernameNotFound = new Alert(Alert.AlertType.WARNING);
+                usernameNotFound.setTitle("Profile Not Found");
+                usernameNotFound.setHeaderText("Please enter an existing user or create a new profile.");
+                usernameNotFound.setContentText("Ensure you are inputting the correct username with the correct age and weight.");
+                usernameNotFound.showAndWait();
+                return;
             }
-        if (usernameFound == false){
-            Alert usernameNotFound = new Alert(Alert.AlertType.WARNING);
-            usernameNotFound.setTitle("Username Not Found");
-            usernameNotFound.setHeaderText("Please enter an existing user or create a new profile.");
-            usernameNotFound.showAndWait();
+
+        if (age.isBlank()){
+            //if no age is inputted, the correct user cannot be accessed so an error will pop up
+            Alert invalidAlertAge = new Alert(Alert.AlertType.WARNING);
+            invalidAlertAge.setTitle("Error: No Age Provided");
+            invalidAlertAge.setHeaderText("Please make sure to fill in Age field.");
+            invalidAlertAge.setContentText("Ensure you are inputting the correct up to date age with your profile.");
+            invalidAlertAge.showAndWait();
+            return;
+        }
+        if (weight.isBlank()){
+            //if no weight is inputted, the correct user cannot be accessed so an error will pop up
+            Alert invalidAlertWeight = new Alert(Alert.AlertType.WARNING);
+            invalidAlertWeight.setTitle("Error: No Weight Provided");
+            invalidAlertWeight.setHeaderText("Please make sure to fill in Weight field.");
+            invalidAlertWeight.setContentText("Ensure you are inputting the correct up to date weight with your profile.");
+            invalidAlertWeight.showAndWait();
+            return;
+        }
+        //if no gender is selected, the correct user cannot be accessed so an error will pop up
+        if (!genderOtherButton.isSelected() && !genderMaleButton.isSelected() && !genderFemaleButton.isSelected()){
+            Alert invalidAlertMeal = new Alert(Alert.AlertType.WARNING);
+            invalidAlertMeal.setTitle("Error: No Gender Provided");
+            invalidAlertMeal.setHeaderText("Please make sure to fill in Gender field.");
+            invalidAlertMeal.setContentText("Ensure you are selecting the correct gender associated with your profile.");
+            invalidAlertMeal.showAndWait();
+            return;
         }
 
-    } catch (IOException e) {
+        if (genderFemaleButton.isSelected()){
+            gender = "F";
+        }
+        if (genderMaleButton.isSelected()){
+            gender = "M";
+        }
+        if (genderOtherButton.isSelected()){
+            gender = "M";
+        }
+
+        }
+        //establish meal fields as strings to set up error conditions
+        String breakfast = breakfastField.getText().trim();
+        String lunch = lunchField.getText().trim();
+        String dinner = dinnerField.getText().trim();
+
+        //at least one meal must be inputted in order for it to save to the users file, if none is inputted an error will pop up
+        if (breakfast.isBlank() || lunch.isBlank() || dinner.isBlank()){
+            Alert invalidAlertMeal = new Alert(Alert.AlertType.WARNING);
+            invalidAlertMeal.setTitle("Error: No Meal Provided");
+            invalidAlertMeal.setHeaderText("Please make sure to fill at least one meal field");
+            invalidAlertMeal.setContentText("If you do not fill in any meals, no history can be added to your account.");
+            invalidAlertMeal.showAndWait();
+            return;
+        }
+
+        try {
+            String mealFormat = username + "," + gender+ "," + todaysDate+ "," + breakfast+ "," + lunch+ "," + dinner;
+            FileWriter writer = new FileWriter("meals.csv");
+            writer.write(mealFormat);
+            writer.close();
+
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            //if user types everything in correctly an information pop up will let the user know their new added data has saved successfully
     Alert mealSave = new Alert(Alert.AlertType.INFORMATION);
         mealSave.setTitle("Success!");
         mealSave.setHeaderText("Meals have been saved and added to user history.");
         mealSave.showAndWait();
+
 
     }
 }
