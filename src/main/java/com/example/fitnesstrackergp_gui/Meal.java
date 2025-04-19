@@ -56,6 +56,11 @@ public class Meal implements Trackable {
      *
      * @return A CSV-formatted string representing the Meal object, including the following fields:
      */
+
+    public LocalDate getDate() {
+        return this.date;
+    }
+
     @Override
     public String toCSV() {
         return username + "," + gender.toChar() + "," + date + "," + breakfast + " (" + breakfastCalories + ")" +

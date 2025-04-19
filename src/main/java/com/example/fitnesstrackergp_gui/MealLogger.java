@@ -132,22 +132,45 @@ public class MealLogger {
      * @param username The username to fetch meal history for.
      * @return A formatted string of meal records and calorie averages.
      */
-    public String getMealHistory(String username) {
+    public String getMealHistory(String username, String timePeriod) {
         StringBuilder result = new StringBuilder();
+        boolean hasMeal = false;
 
         for (Gender gender : Gender.values()) {
             DietHistory dietHistory = new DietHistory();
             dietHistory.loadCSV(fileName, username, gender);
 
-            if (dietHistory.getDayCount() > 0) {
-                result.append("Meal History for ").append(username).append(" (").append(gender).append("):\n\n");
-                result.append(dietHistory.getFormattedMeals());
-                result.append("\nAverage Calories/Day: ").append(String.format("%.2f", dietHistory.getAverage()));
-                return result.toString();
+            if (dietHistory.getDayCount() == 0) {
+                continue;
             }
+
+            hasMeal = true;
+
+            int days = 0;
+            if (timePeriod.equals("7")) {
+                days = 7;
+            } else if (timePeriod.equals("30")) {
+                days = 30;
+            } else if (timePeriod.equals("0")) {
+                days = dietHistory.getDayCount();
+            }
+
+            if (days > dietHistory.getDayCount()) {
+                days = dietHistory.getDayCount();
+
+            }
+
+            result.append("\nLast " + days + "-Days Average Calories/Day: ").append(String.format("%.2f", dietHistory.getAverageDailyCalorieIntake(days)));
+            result.append("\n");
+            result.append("\nMeal History:\n").append(dietHistory.getFormattedMeals());
+
         }
 
-        return "No meal history found for user: " + username;
+        if (!hasMeal) {
+            result.append("No meal history found for user: ").append(username);
+        }
+
+        return result.toString();
     }
 
 }

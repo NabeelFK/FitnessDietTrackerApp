@@ -66,8 +66,8 @@ public class MenuController {
     @FXML
     public void handleExitBtn(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Are you sure you wish to exit?");
-        alert.setHeaderText("Exit Confirmation");
+        alert.setTitle("Exit Confirmation");
+        alert.setHeaderText("Are you sure you wish to exit?");
         alert.setContentText("Thank you for using our Fitness Diet Tracker!");
         Optional <ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {

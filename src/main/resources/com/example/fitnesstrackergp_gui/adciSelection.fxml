@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="133.0" prefWidth="505.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.fitnesstrackergp_gui.AdciSelectionController">
+   <children>
+      <Label layoutX="59.0" layoutY="30.0" prefHeight="17.0" prefWidth="387.0" text="Please select average daily calorie intake for 7 days, 30 days, or All-Time" />
+      <Button fx:id="sevenDaysButton" layoutX="59.0" layoutY="68.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="7 Days" onAction="#handleSevenDays" />
+      <Button fx:id="thirtyDaysButton" layoutX="205.0" layoutY="68.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="30 Days" onAction="#handleThirtyDays" />
+      <Button fx:id="allTimeButton" layoutX="351.0" layoutY="68.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="All-Time" onAction="#handleAllTime" />
+   </children>
+</AnchorPane>

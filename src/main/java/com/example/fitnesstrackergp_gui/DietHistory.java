@@ -2,6 +2,8 @@ package com.example.fitnesstrackergp_gui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 // DietHistory handles parsing and displaying user's logged meals and average daily calorie intake
@@ -94,6 +96,18 @@ public class DietHistory extends History implements Comparable<DietHistory> {
     }
 
     /**
+     * Sorts Meals in the Meal list by descending order.
+     */
+    private void sortMealsByDate() {
+        Collections.sort(MEALS, new Comparator<Meal>() {
+            @Override
+            public int compare(Meal meal1, Meal meal2) {
+                return meal2.getDate().compareTo(meal1.getDate());
+            }
+        });
+    }
+
+    /**
      * Calculates the average daily calorie intake based on the total calories consumed across all meals.
      * Sums the total calories from all meals in the MEALS list and divides the result by the specified
      * number of days to compute the average daily intake.
@@ -105,10 +119,12 @@ public class DietHistory extends History implements Comparable<DietHistory> {
     public double getAverageDailyCalorieIntake(int days) {
         if (MEALS.isEmpty()) { return 0; }
 
+        sortMealsByDate();
+
         double totalCalories = 0;
 
-        for (Meal meal : MEALS) {
-            totalCalories += meal.getTotalCalories();
+        for (int i = 0; i < days; i++) {
+            totalCalories += MEALS.get(i).getTotalCalories();
         }
 
         return totalCalories / days;
@@ -125,20 +141,15 @@ public class DietHistory extends History implements Comparable<DietHistory> {
      */
     public void showAverageDailyCalorieIntake(int days) {
 
-        if (days > MEALS.size() && days == 7) {
-
-            System.out.println("Not enough meals in History to calculate daily average over 1 week. Average over "
-                    + MEALS.size() + " day(s).");
-            days = MEALS.size();
-
-        } else if (days > MEALS.size() && days == 30) {
-            System.out.println("Not enough meals in History to calculate daily average over 30 days. Average over "
-                    + MEALS.size() + " day(s).");
+        if (days > MEALS.size()) {
+            System.out.println("Not enough meals in History to calculate daily average over " + days + " days. Average over " + MEALS.size() + " day(s).");
             days = MEALS.size();
         }
+
         System.out.println("Average Daily Calorie Intake over " + days + " day(s): "
                 + getAverageDailyCalorieIntake(days));
     }
+
 
     /**
      * Compares this DietHistory object with another DietHistory object based on their average daily calorie intake.
@@ -158,9 +169,11 @@ public class DietHistory extends History implements Comparable<DietHistory> {
     }
 
     public String getFormattedMeals() {
+        sortMealsByDate();
+
         StringBuilder sb = new StringBuilder();
         for (Meal meal : MEALS) {
-            sb.append(meal).append("\n");
+            sb.append(meal).append("\n\n");
         }
         return sb.toString();
     }
