@@ -1,16 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.text.Font?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.fitnesstrackergp_gui.LogMealsController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="400.0" prefWidth="355.0">
     <children>
-        <Label layoutX="130.0" layoutY="140.0" text="Log Meals  Window" />
+        <Label text="Log Daily Meals" layoutX="43"  layoutY="10">
+        <font>
+            <Font name="System Bold" size="18.0" />
+        </font>
+        </Label>
+        <Label layoutX="43" layoutY="60" text="Username:">
+            <font>
+                <Font size="13" />
+            </font>
+        </Label>
+        <TextField fx:id="usernameField" layoutY="60" layoutX="175" prefWidth="150" prefHeight="10" promptText="ex. Michael"/>
+        <Label layoutX="43" layoutY="100" text="Age:">
+            <font>
+                <Font size="13" />
+            </font>
+        </Label>
+        <TextField fx:id="ageField" layoutY="100" layoutX="175" prefWidth="150" prefHeight="10" promptText="ex. 21"/>
+        <Label layoutX="43" layoutY="140" text="Weight (Kgs):">
+            <font>
+                <Font size="13" />
+            </font>
+        </Label>
+        <TextField fx:id="weightField" layoutY="140" layoutX="175" prefWidth="150" prefHeight="10" promptText="ex. 74.6"/>
+        <Label layoutX="43" layoutY="180" text="Gender:">
+            <font>
+                <Font size="13" />
+            </font>
+        </Label>
+        <RadioButton fx:id="genderFemaleButton" layoutY="180"    layoutX="100"   text="Female">
+            <font>
+                <Font size="13" />
+            </font>
+        </RadioButton>
+        <RadioButton fx:id="genderMaleButton" layoutY="180"    layoutX="175"   text="Male">
+            <font>
+                <Font size="13" />
+            </font>
+        </RadioButton>
+        <RadioButton fx:id="genderOtherButton" layoutY="180"    layoutX="250"   text="Other">
+            <font>
+                <Font size="13" />
+            </font>
+        </RadioButton>
+        <Label layoutX="43" layoutY="220" text="Breakfast (Cals):">
+            <font>
+                <Font size="13" />
+            </font>
+        </Label>
+        <TextField fx:id="breakfastField" layoutY="220" layoutX="175" prefWidth="150" prefHeight="10" promptText="ex. Cereal(250)"/>
+        <Label layoutX="43" layoutY="260" text="Lunch (Cals):">
+            <font>
+                <Font size="13" />
+            </font>
+        </Label>
+        <TextField fx:id="lunchField" layoutY="260" layoutX="175" prefWidth="150" prefHeight="10" promptText="ex. Salad(300)"/>
+        <Label layoutX="43" layoutY="300" text="Dinner (Cals):">
+            <font>
+                <Font size="13" />
+            </font>
+        </Label>
+        <TextField fx:id="dinnerField" layoutY="300" layoutX="175" prefWidth="150" prefHeight="10" promptText="ex. Pasta(650)"/>
+        <Button fx:id="submitButton" layoutX="100" layoutY="355" prefWidth="150" prefHeight="10" text="Submit" onAction="#handleSubmitButton"/>
     </children>
 </AnchorPane>
