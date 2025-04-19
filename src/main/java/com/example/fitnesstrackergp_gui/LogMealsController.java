@@ -37,10 +37,6 @@ public class LogMealsController {
     private TextField dinnerField;
 
     @FXML
-    private Button submitButton;
-
-
-    @FXML
     public void initialize() {
         //set gender buttons as a part of the same group , so you can only select one
         ToggleGroup genderButtonGroup = new ToggleGroup();
@@ -144,15 +140,19 @@ public class LogMealsController {
             invalidAlertMeal.showAndWait();
             return;
         }
+        //if everything is inputted correctly then it will add the data to the file
+        if (!username.isBlank() && !age.isBlank() && !weight.isBlank() && (gender.contains("M") || gender.contains("F")) && (!breakfast.isBlank() || !lunch.isBlank() || !dinner.isBlank())) {
 
-        try {
-            String mealFormat = username + "," + gender+ "," + todaysDate+ "," + breakfast+ "," + lunch+ "," + dinner;
-            FileWriter writer = new FileWriter("meals.csv");
-            writer.write(mealFormat);
-            writer.close();
+            try {
+                String mealFormat = username + "," + gender + "," + todaysDate + "," + breakfast + "," + lunch + "," + dinner;
+                String fileName = "src/main/resources/com/example/fitnesstrackergp_gui/meals.csv";
+                FileWriter writer = new FileWriter(fileName, true);
+                writer.write(mealFormat);
+                writer.close();
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         } catch (IOException e) {
