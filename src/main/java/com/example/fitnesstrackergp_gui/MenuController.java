@@ -8,10 +8,8 @@ import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Optional;
 
@@ -101,10 +99,10 @@ public class MenuController {
                 System.out.println("Resource not found: " + name);
                 return;
             }
-            java.nio.file.Files.copy(
+            Files.copy(
                 inputStream,
                 new File(downloadDir, name).toPath(),
-                java.nio.file.StandardCopyOption.REPLACE_EXISTING
+                StandardCopyOption.REPLACE_EXISTING
             );
         }
     }
