@@ -75,4 +75,14 @@ public class MenuController {
             stage.close();
         }
     }
+
+    @FXML
+    public void handleAboutBtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("About");
+        stage.setScene(new Scene(fxmlLoader.load()));
+        stage.show();
+    }
+
 }
