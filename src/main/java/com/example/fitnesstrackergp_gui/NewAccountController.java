@@ -8,7 +8,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class NewAccountController implements Initializable {

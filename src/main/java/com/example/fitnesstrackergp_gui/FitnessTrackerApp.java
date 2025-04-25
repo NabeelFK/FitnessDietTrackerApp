@@ -1,16 +1,10 @@
 package com.example.fitnesstrackergp_gui;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 public class FitnessTrackerApp extends Application {
     @Override
@@ -21,6 +15,7 @@ public class FitnessTrackerApp extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
     @Override
     public void init() {
         Parameters params = getParameters();
@@ -28,7 +23,6 @@ public class FitnessTrackerApp extends Application {
     }
 
     public static void main(String[] args) {
-
         if (args.length > 0) {
             if (args.length != 3) {
                 System.out.println("Usage of Fitness Tracker app: java Main <profile file> <goals file> <meal file>");
