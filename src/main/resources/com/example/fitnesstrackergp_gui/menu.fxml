@@ -16,6 +16,7 @@
       <Button fx:id="setGoalsButton" layoutX="94.0" layoutY="178.0" mnemonicParsing="false" onAction="#handleSetGoalsBtn" prefHeight="25.0" prefWidth="189.0" text="Set Goals" />
       <Button fx:id="logMealsButton" layoutX="94.0" layoutY="233.0" mnemonicParsing="false" onAction="#handleLogMealsBtn" prefHeight="25.0" prefWidth="189.0" text="Log Meals" />
       <Button fx:id="viewHistoryButton" layoutX="93.0" layoutY="289.0" mnemonicParsing="false" prefHeight="25.0" onAction="#handleViewHistoryBtn" prefWidth="189.0" text="View History" />
+      <Button fx:id="aboutButton" layoutX="147.0" layoutY="415.0" mnemonicParsing="false" onAction="#handleAboutBtn" prefHeight="25.0" prefWidth="81.0" text="About" />
       <Button fx:id="exitButton" layoutX="160.0" layoutY="377.0" mnemonicParsing="false" onAction="#handleExitBtn" prefHeight="25.0" prefWidth="56.0" text="Exit" />
    </children>
 </AnchorPane>

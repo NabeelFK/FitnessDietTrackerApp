@@ -11,7 +11,11 @@ import java.io.*;
 import java.util.Optional;
 
 public class SetGoalsController implements Initializable {
-    private static final String fileName = "src/main/resources/com/example/fitnesstrackergp_gui/goals.csv";
+    private String fileName;
+
+    public SetGoalsController() {
+        this.fileName = ArgsManager.getInstance().getGoalsCSV();
+    }
 
     @FXML
     private TextField usernameInput;
@@ -67,19 +71,15 @@ public class SetGoalsController implements Initializable {
      */
     @FXML
     private void handleSubmit() {
-        // Collect the input values
         inputtedUsername = usernameInput.getText();
         gender = genderInput.getValue();
-
-        // Check if username exists in the file
         if (!isUsernameExists(inputtedUsername)) {
-            // Prompt to create a new account
             showProfileNotFoundAlert();
             return;
         }
 
-        if (username != null && age != 0 && (weight != 0 || gender != null || idealWeight != 0 ||
-                idealExercise != 0 || idealSleep != 0)) {
+        if (username != null && age != 0 && weight != 0 && gender != null && idealWeight != 0 &&
+                idealExercise != 0 && idealSleep != 0) {
             showConfirmation("Success!", "Your profile has been updated.");
             return;
         }
@@ -154,13 +154,13 @@ public class SetGoalsController implements Initializable {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith(username)) {
-                    return true; // Username found
+                    return true;
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false; // Username not found
+        return false;
     }
 
     /**

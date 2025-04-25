@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutX="50.0" layoutY="30.0" text="Fitness Diet Tracker - About">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="50.0" layoutY="80.0" wrapText="true" text="This JavaFX-based application helps users track their meals, set fitness goals, and view their health history. Designed using OOP and modular programming principles in CPSC 219.">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </Label>
+        <Label layoutX="50.0" layoutY="140.0" text="Contact: pavneetsingh.dhanoa@ucalgary.ca">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

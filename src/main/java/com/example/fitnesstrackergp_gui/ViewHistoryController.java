@@ -14,6 +14,9 @@ import java.util.Optional;
 
 public class ViewHistoryController {
 
+    private String username;
+    private Gender gender;
+
     @FXML
     private TextField usernameField;
 
@@ -92,8 +95,8 @@ public class ViewHistoryController {
 
     @FXML
     private void handleMealHistory() {
-        String username = usernameField.getText().trim();
-        Gender gender = getSelectedGender();
+        username = usernameField.getText().trim();
+        gender = getSelectedGender();
 
         if (username.isEmpty() || gender == null) {
             showAlert("Please enter a username and select a gender.");
@@ -131,8 +134,7 @@ public class ViewHistoryController {
     }
 
     public void updateMealHistory(String period) {
-        String username = usernameField.getText().trim();
-        if (!profileManager.profileExists(username)) {
+        if (!profileManager.profileExists(username) || gender == null) {
             showProfileNotFoundAlert();
             return;
         }
