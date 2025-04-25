@@ -4,14 +4,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="254.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label layoutX="50.0" layoutY="30.0" text="Fitness Diet Tracker - About">
+        <Label layoutX="50.0" layoutY="30.0" prefHeight="20.0" prefWidth="339.0" text="Fitness Diet Tracker Group 45 T10 - About">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="50.0" layoutY="80.0" wrapText="true" text="This JavaFX-based application helps users track their meals, set fitness goals, and view their health history. Designed using OOP and modular programming principles in CPSC 219.">
+        <Label layoutX="50.0" layoutY="80.0" text="This JavaFX-based application helps users track their meals, set fitness goals, and view their health history. Designed using OOP and modular programming principles in CPSC 219." wrapText="true">
             <font>
                 <Font size="13.0" />
             </font>
@@ -21,6 +21,11 @@
                 <Font size="13.0" />
             </font>
         </Label>
+      <Label layoutX="611.0" layoutY="139.0" prefHeight="20.0" prefWidth="241.0" text="Contact: shivashrita.das@ucalgary.ca" />
+      <Label layoutX="346.0" layoutY="141.0" prefHeight="17.0" prefWidth="234.0" text="Contact: nabeel.furquan@ucalgary.ca" />
+      <Label layoutX="50.0" layoutY="182.0" prefHeight="17.0" prefWidth="241.0" text="Contact: kendra.cowan@ucalgary.ca" />
+      <Label layoutX="346.0" layoutY="182.0" prefHeight="17.0" prefWidth="207.0" text="Contact: myah.rustad@ucalgary.ca" />
+      <Label layoutX="611.0" layoutY="182.0" prefHeight="17.0" prefWidth="207.0" text="Contact: steven.barclay@ucalgary.ca" />
 
     </children>
 </AnchorPane>
