@@ -131,7 +131,7 @@ public class LogMealsController {
             gender = "M";
         }
         if (genderOtherButton.isSelected()){
-            gender = "M";
+            gender = "O";
         }
         if (!isUsernameAgeWeightGenderMatch(username,gender,age,weight)){
             showProfileNotFoundAlert();
