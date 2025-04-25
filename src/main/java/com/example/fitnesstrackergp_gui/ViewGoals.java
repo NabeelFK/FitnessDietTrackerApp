@@ -23,6 +23,10 @@ public class ViewGoals extends History {
 
         List<String> goalLogs = FileHandler.readAllMatches(path, name, gender.toChar());
 
+        if (goalLogs.isEmpty()) {
+            System.out.println("No goals found for username: " + name);
+        }
+
         for (String goal : goalLogs) {
             FitnessGoal newGoal = parseFitnessGoal(goal);
             if (newGoal != null) {

@@ -180,8 +180,9 @@ public class SetGoalsController implements Initializable {
      * @param idealSleep    The ideal number of sleep hours per day for the user.
      */
     private void saveGoals(String username, int age, float weight, String gender, float idealWeight, int idealExercise, int idealSleep) {
+        char genderChar = gender.charAt(0);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(goalsFile, true))) {
-            writer.write(username + "," + age + "," + weight + "," + gender + "," + idealWeight + "," + idealExercise + "," + idealSleep);
+            writer.write(username + "," + genderChar + "," + weight + "," + idealExercise + "," + idealSleep);
             writer.newLine();
             showConfirmation("Goals Saved", "Your fitness goals have been successfully saved!");
         } catch (IOException e) {
