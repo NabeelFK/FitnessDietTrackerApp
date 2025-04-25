@@ -26,7 +26,7 @@
       <TextField fx:id="ageInput" layoutX="200.0" layoutY="109.0" promptText="ex. 21" />
       <TextField fx:id="weightInput" layoutX="200.0" layoutY="151.0" promptText="ex. 74.6" />
       <TextField fx:id="idealWeightInput" layoutX="201.0" layoutY="233.0" promptText="ex. 74.6" />
-      <TextField fx:id="idealExerciseInput" layoutX="235.0" layoutY="276.0" prefHeight="26.0" prefWidth="115.0" promptText="ex. 90" />
+      <TextField fx:id="idealExerciseInput" layoutX="201.0" layoutY="276.0" prefHeight="26.0" prefWidth="149.0" promptText="ex. 90" />
       <TextField fx:id="idealSleepInput" layoutX="201.0" layoutY="316.0" promptText="ex. 8" />
     </children>
 </AnchorPane>
