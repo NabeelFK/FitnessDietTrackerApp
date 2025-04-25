@@ -5,9 +5,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.StandardCopyOption;
 import java.util.Optional;
 
 public class MenuController {
@@ -61,6 +66,47 @@ public class MenuController {
         stage.setTitle("View History");
         stage.setScene(new Scene(fxmlLoader.load()));
         stage.show();
+    }
+
+    @FXML
+    public void handleDownloadCSVBtn(ActionEvent actionEvent) {
+
+        String userHome = System.getProperty("user.home");
+        File downloadDir = new File(userHome + "/Downloads/");
+
+        try {
+            copyToDownloads("meals.csv", downloadDir);
+            copyToDownloads("profiles.csv", downloadDir);
+            copyToDownloads("goals.csv", downloadDir);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Success");
+            alert.setContentText("CSV files downloaded to your Downloads folder!");
+            alert.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Failed to download CSV files.");
+            alert.showAndWait();
+        }
+    }
+
+    private void copyToDownloads(String name, File downloadDir) throws IOException {
+        try (var inputStream = getClass().getResourceAsStream(name)) {
+            if (inputStream == null) {
+                System.out.println("Resource not found: " + name);
+                return;
+            }
+            java.nio.file.Files.copy(
+                inputStream,
+                new File(downloadDir, name).toPath(),
+                java.nio.file.StandardCopyOption.REPLACE_EXISTING
+            );
+        }
     }
 
     @FXML
