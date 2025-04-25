@@ -145,6 +145,7 @@ public class ViewHistoryController {
         } else {
             outputArea.setText("No meals history found.");
         }
+
     }
 
     private void clearForm() {

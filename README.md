@@ -18,7 +18,7 @@ In order to install this on your local machine please start by cloning the repos
 Step 2)
 Please make sure you have all the necessary technologies such as JUnit and JavaFX in order for everything to work as intended.
 Step 3)
-Run Program from FitnessAppRun or from FitnessTrackerGP_GUI.jar in out.artifacts/FitnessTrackerGP_GUI_jar.
+Run Program from FitnessAppRun Class or from RunApp.jar.
 
 #Contributors#
 Steven Barclay
