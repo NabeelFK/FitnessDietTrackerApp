@@ -133,6 +133,10 @@ public class LogMealsController {
         if (genderOtherButton.isSelected()){
             gender = "M";
         }
+        if (!isUsernameAgeWeightGenderMatch(username,gender,age,weight)){
+            showProfileNotFoundAlert();
+            return;
+        }
         }
         //establish meal fields as strings to set up error conditions
         String breakfast = breakfastField.getText().trim();
@@ -212,5 +216,27 @@ public class LogMealsController {
             }
         }
 
+    }
+    //this method is ensuring that the user is inputting the correct username, age, weight, and gender associated with their profile
+    private boolean isUsernameAgeWeightGenderMatch (String username, String gender, String age, String weight){
+        InputStream toRead = getClass().getResourceAsStream("/com/example/fitnesstrackergp_gui/profiles.csv");
+
+        assert toRead != null;
+        boolean match;
+        try (BufferedReader linereader = new BufferedReader(new InputStreamReader(toRead))){
+            String lines;
+            match = false;
+            while ((lines = linereader.readLine()) != null){
+                //ensure that the line in the profile csv contains all fields required and check if they're a match
+                //if all but even one are not a match, method will return false
+                if (lines.contains(username) && lines.contains(gender) && lines.contains(age) && lines.contains(weight)){
+                    match = true;
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return match;
     }
 }
