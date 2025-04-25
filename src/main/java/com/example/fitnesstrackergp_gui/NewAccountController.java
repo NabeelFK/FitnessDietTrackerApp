@@ -147,6 +147,7 @@ public class NewAccountController implements Initializable {
             alert.setHeaderText("Profile created.");
             alert.setContentText("You have successfully created your account.");
             alert.showAndWait();
+            resetForm();
         }
         else  {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -156,5 +157,10 @@ public class NewAccountController implements Initializable {
             alert.showAndWait();
         }
     }
-
+    private void resetForm() {
+        usernameInput.clear();
+        ageInput.clear();
+        weightInput.clear();
+        heightInput.clear();
+    }
 }
