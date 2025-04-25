@@ -11,10 +11,12 @@ import java.io.*;
 import java.util.Optional;
 
 public class SetGoalsController implements Initializable {
-    private String fileName;
+    private String goalsFile;
+    private String profilesFile;
 
     public SetGoalsController() {
-        this.fileName = ArgsManager.getInstance().getGoalsCSV();
+        this.goalsFile = ArgsManager.getInstance().getGoalsCSV();
+        this.profilesFile = ArgsManager.getInstance().getProfileCSV();
     }
 
     @FXML
@@ -73,6 +75,7 @@ public class SetGoalsController implements Initializable {
     private void handleSubmit() {
         inputtedUsername = usernameInput.getText();
         gender = genderInput.getValue();
+
         if (!isUsernameExists(inputtedUsername)) {
             showProfileNotFoundAlert();
             return;
@@ -150,7 +153,7 @@ public class SetGoalsController implements Initializable {
      * @return true if the username is found in the file, false otherwise.
      */
     private boolean isUsernameExists(String username) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(profilesFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith(username)) {
@@ -177,7 +180,7 @@ public class SetGoalsController implements Initializable {
      * @param idealSleep    The ideal number of sleep hours per day for the user.
      */
     private void saveGoals(String username, int age, float weight, String gender, float idealWeight, int idealExercise, int idealSleep) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(goalsFile, true))) {
             writer.write(username + "," + age + "," + weight + "," + gender + "," + idealWeight + "," + idealExercise + "," + idealSleep);
             writer.newLine();
             showConfirmation("Goals Saved", "Your fitness goals have been successfully saved!");

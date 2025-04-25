@@ -7,7 +7,6 @@ public class ViewGoals extends History {
 
     private final ArrayList<FitnessGoal> GOALS = new ArrayList<>();
 
-
     /**
      * Loads fitness goals from a CSV file and adds them to the list of goals.
      * This method reads the CSV file at the specified path, filters the records that match
@@ -20,6 +19,8 @@ public class ViewGoals extends History {
      */
     @Override
     public void loadCSV(String path, String name, Gender gender) {
+        GOALS.clear();
+
         List<String> goalLogs = FileHandler.readAllMatches(path, name, gender.toChar());
 
         for (String goal : goalLogs) {
@@ -98,8 +99,8 @@ public class ViewGoals extends History {
             List<String> profile = FileHandler.readAllMatches("src/main/resources/com/example/fitnesstrackergp_gui/profiles.csv", name, gender.toChar());
 
             if (!profile.isEmpty()) {
-                UserProfile user = UserProfile.fromCSV(profile.get(0));
                 loadCSV("src/main/resources/com/example/fitnesstrackergp_gui/goals.csv", name, gender);
+                UserProfile user = UserProfile.fromCSV(profile.get(0));
 
                 output.append("Current Weight: ").append(user.getWeight()).append(" Kg\n\n");
 
