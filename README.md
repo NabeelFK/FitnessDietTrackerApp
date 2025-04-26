@@ -1,50 +1,80 @@
-**Fitness Diet Tracker**
+# Fitness Diet Tracker
 
-Fitness Diet Tracker is a Java-FX based program that allows users to create profiles, add fitness goals, and track all their previous activity. In order to run from the command line you must make sure you have all 3 parameters that are important for storing/receiving user data. They should be inputted as followed; 
+Fitness Diet Tracker is a JavaFX-based application designed to help users effectively manage their fitness and dietary goals. The program allows users to create profiles, set fitness goals, and track their daily activities and meal history. It also provides insights into calorie intake, recommended workout durations, and sleep recommendations based on user profiles.
 
-src/main/resources/com/example/fitnesstrackergp_gui/profiles.csv 
+## Features
 
-src/main/resources/com/example/fitnesstrackergp_gui/goals.csv 
+### 1. Create Profiles
+- Users can input personal details including:
+  - Username
+  - Age
+  - Height
+  - Weight
+  - Gender
 
-src/main/resources/com/example/fitnesstrackergp_gui/meals.csv
+### 2. View Profile
+- Displays previously entered information.
+- Automatically calculates and displays the user's Basal Metabolic Rate (BMR).
 
-If the program is passed with less than 3 parameters, it will not launch the welcome page and instead output a message in the console.
-This project makes use of Git for version control, Intellij IDEA for developmental purposes, JUnit in order to test, and Java-FX for GUI creation.
+### 3. Fitness Goal Setting
+- Users answer a series of guided questions to set personalized fitness goals.
+- Goals are saved for future reference.
 
-**Features:**
+### 4. Log Daily Meals
+- Users can input meals consumed on a specific date.
+- All entries are stored for tracking and analysis.
 
-**Create Profiles:** Program will ask for username, age, height, weight, and gender.
+### 5. View Diet History
+- Retrieves and displays historical meal data.
+- Calculates and shows the average daily calorie intake.
 
-**View Profile:** Will be able to view previously entered info and also see a calculated basal metabolic rate.
+### 6. View Fitness Goals
+- Provides recommendations based on user profiles, including:
+  - Suggested sleep duration.
+  - Recommended workout duration per day.
 
-**Fitness Goal Setting:** Program will ask a few questions after retrieving profile and that will then be saved.
+## Installation
 
-**Log Daily Meals:** Will be able to enter current date and all meals eaten that day that will be stored.
+To set up the Fitness Diet Tracker on your local machine, follow these steps:
 
-**View Diet History:** Program retrieves and displays meal history and calculates to show average calorie intake.
+### Step 1: Clone the Repository
+Clone the repository using the following link:
+```
+git clone https://github.com/NabeelFK/FitnessDietTrackerApp.git
+```
 
-**View Fitness Goals:** Will retrieve profile and also lets the user know recommended sleep duration/duration of workout per day.
+### Step 2: Install Dependencies
+Ensure the following technologies are installed to run the program:
+- JavaFX
+- JUnit
 
-**Usage**
+### Step 3: Run the Program
+You can run the application using:
+- `FitnessAppRun` class, or
+- `RunApp.jar` file.
 
-This project can be used in order to get a better understanding of your fitness goals, and the steps one must take to achieve them. We provide an understanding of the required workout duration per day and the recommended sleep hours associated with the profile information.
+## File Requirements
+For the program to function correctly, ensure the following files are present in the specified paths:
+- `profiles.csv` - `src/main/resources/com/example/fitnesstrackergp_gui/profiles.csv`
+- `goals.csv` - `src/main/resources/com/example/fitnesstrackergp_gui/goals.csv`
+- `meals.csv` - `src/main/resources/com/example/fitnesstrackergp_gui/meals.csv`
 
-Installation:
+> **Note:** If the program is launched with fewer than three parameters, it will not display the welcome page and will instead output an error message to the console.
 
-Step 1)
-In order to install this on your local machine please start by cloning the repository at the following link: https://csgit.ucalgary.ca/steven.barclay/fitnesstrackergp_gui 
+## Technologies Used
+- **JavaFX**: For creating the graphical user interface.
+- **JUnit**: For unit testing.
+- **Git**: For version control.
+- **IntelliJ IDEA**: For development.
 
-Step 2)
-Please make sure you have all the necessary technologies such as JUnit and JavaFX in order for everything to work as intended.
+## Usage
+Fitness Diet Tracker is a tool designed to help users gain a better understanding of their fitness goals and the necessary steps to achieve them. It provides insights into workout durations, calorie intake, and more, all tailored to the user's profile.
 
-Step 3)
-Run Program from FitnessAppRun Class or from RunApp.jar.
-
-**Contributors:**
-
-Steven Barclay,
-Kendra Cowan,
-Shiva Das,
-Pavneet Dhanoa,
-Nabeel Furqan,
-Myah Rustad.
+## Contributors
+This project was developed by:
+- Steven Barclay
+- Kendra Cowan
+- Shiva Das
+- Pavneet Dhanoa
+- Nabeel Furqan
+- Myah Rustad
