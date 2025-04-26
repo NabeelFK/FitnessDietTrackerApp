@@ -70,6 +70,13 @@ For the program to function correctly, ensure the following files are present in
 ## Usage
 Fitness Diet Tracker is a tool designed to help users gain a better understanding of their fitness goals and the necessary steps to achieve them. It provides insights into workout durations, calorie intake, and more, all tailored to the user's profile.
 
+## Known Issues and Future Updates
+While the Fitness Diet Tracker is functional, there are still some **bugs** present in the project that affect certain features. I acknowledge that these issues exist and intend to address them in the future, although they will likely remain unaddressed for some time. Please be aware of the following potential issues:
+- Some features may not work as intended under specific conditions.
+- A few bugs may cause certain actions to fail or behave unexpectedly.
+
+Despite these known issues, the core functionality of the app remains operational, and I plan to fix these bugs when I have the opportunity.
+
 ## Contributors
 This project was developed by:
 - Steven Barclay
